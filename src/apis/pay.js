@@ -10,10 +10,10 @@ import { invokeMethod, compareVersion } from '../util'
  * @param {String=} params.x_shard 自定义的多活 header
  */
 const isBugVersion = () => {
-  if (!/Android/i.test(userAgent)) {
+  if (!/Android/i.test(navigator.userAgent)) {
     return false
   }
-  const version = (userAgent.match(/Eleme\/([\d|\.]+)/i) || [])[1]
+  const version = (navigator.userAgent.match(/Eleme\/([\d|\.]+)/i) || [])[1]
 
   return !version || version === '7.9' || version === '7.9.1'
 }
