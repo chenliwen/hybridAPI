@@ -36,6 +36,7 @@ const METHODS = [
   'setNavBgColor',
   'setNavTextColor',
   'setTriggerHeight',
+  'scanCode',
 ]
 bridgeProtocol.inject('EJsBridge', METHODS)
 

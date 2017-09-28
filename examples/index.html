@@ -11,6 +11,12 @@
     <div class="buttonGroup">
       <button onclick="location.reload()">刷新</button>
     </div>
+
+    <div class="buttonGroup">
+      <button id="scanQrcode">扫二维码</button>
+      <button id="scanBarCode">扫条形码</button>
+    </div>
+
     <div class="buttonGroup">
       <h3>地理位置</h3>
       <p>获取GeoHash</p>
@@ -173,6 +179,28 @@
       document.querySelector('#openPackage').addEventListener('click', function () {
         hybridAPI.openPackage('com.tencent.mm')
       })
+
+      document.querySelector('#scanQrcode').addEventListener('click', () => {
+        hybridAPI.scanCode({
+          needResult: 1,
+          type: ['qrCode', 'barCode'],
+        })
+        .then(response => {
+          alert(JSON.stringify(response))
+        })
+      })
+
+      document.querySelector('#scanBarCode').addEventListener('click', () => {
+        hybridAPI.scanCode({
+          needResult: 0,
+          type: ['barCode'],
+        })
+        .then(response => {
+          alert(JSON.stringify(response))
+        })
+      })
+
+
 
       document.querySelector('#setNav').addEventListener('click', function () {
         var random = () => Math.random() > .5
