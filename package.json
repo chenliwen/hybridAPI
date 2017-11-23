@@ -25,7 +25,7 @@
     "webpack": "v3.3.0"
   },
   "dependencies": {
-    "bridge-protocol": "0.2.0"
+    "bridge-protocol": "0.2.2"
   },
   "faas": {
     "domain": "hybrid",
