@@ -24,7 +24,7 @@ export default options => {
       title: options.title,
       text: SHARE_TYPES[item].value === 2 ? `${options.title}, ${options.text}。分享链接：${url}type=${item}` : options.text,
       url: `${url}type=${item}`,
-      image_url: options.image_url,
+      image_url: encodeURI(decodeURI(options.image_url)),
       image_only: options.image_only ? 1 : 0,
       media: options.media,
     })

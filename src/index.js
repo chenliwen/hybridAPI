@@ -54,7 +54,7 @@ const hybridAPI = {
       <meta name="eleme-share">
       <meta name="eleme-share:title" content="${options.title}">
       <meta name="eleme-share:description" content="${options.text}">
-      <meta name="eleme-share:image" content="${options.image_url}">`)
+      <meta name="eleme-share:image" content="${encodeURI(decodeURI(options.image_url))}">`)
   },
 
   selectHongbao(sn) {
