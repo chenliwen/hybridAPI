@@ -30,8 +30,11 @@ export default options => {
     })
     return prev
   }, {})
+
+  if (options.targets.indexOf('clipboard') !== -1) {
+    param.clipboard = `eleme://copy?text=${option.url}`
+  }
+
   location.href = `eleme://sns_share?source=${options.source}&${toQueryString(param)}`
-  return new Promise((resolve) => {
-    resolve()
-  })
+  return Promise.resolve()
 }

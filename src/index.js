@@ -10,6 +10,7 @@ import getTopBarHeight from './apis/bar'
 import contactList from './apis/contactList'
 import setNav from './apis/nav'
 import sharePanel from './apis/sharePanel'
+import cart from './apis/cart'
 
 const METHODS = [
   'getGlobalGeohash',
@@ -37,6 +38,12 @@ const METHODS = [
   'setNavTextColor',
   'setTriggerHeight',
   'scanCode',
+  // cart
+  'getCartItems',
+  'addCartItem',
+  'reduceCartItem',
+  'removeCartItem',
+  'clearCart',
 ]
 bridgeProtocol.inject('EJsBridge', METHODS)
 
@@ -117,6 +124,8 @@ const hybridAPI = {
   setNav,
 
   sharePanel,
+
+  cart,
 }
 
 export default hybridAPI

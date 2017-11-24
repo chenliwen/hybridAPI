@@ -23,10 +23,14 @@ hybridAPI.sharePanel({
   title: [String], // 分享到社交平台的标题，默认值：饿了么
   text: [String], // 分享到社交平台的简介文案，默认值：无
   url: [String], // 分享出去的链接，默认为当前页面的 URL
-  targets: [Array], // 需要展示的分享平台。可供选择的有 ['weixin', 'weixin_timeline', 'weibo', 'qq', 'qzone']。默认展示全部
+  targets: [Array], // 需要展示的分享平台。可供选择的有 ['weixin', 'weixin_timeline', 'weibo', 'qq', 'qzone', 'clipboard']。默认展示全部
   image_url: [String], // 分享的图片缩略图或者图片（绝对路径）
 
   media: [String],  // 是否分享截屏，当设置为 screenshot 的时候分享出去的是当前 WebView 截屏，而不是链接。（支持版本：7.17）
   image_only: [Boolean], // 是否单独分享一张图片，当设置为 true 的时候分享出去的是一个图片，而不是链接。默认为 false（支持版本：7.18）
 })
 ```
+
+## Tip
+
+> 当 `targets` 中含有 `clipboard` 选项时，分享面板会多出一个「复制链接」的功能。值为 `url` 参数，默认为当前链接

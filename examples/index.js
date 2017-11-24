@@ -5,6 +5,80 @@ const scanCode = (needResult, type) => {
   })
 }
 
+let cartParam = {
+  shop_id: '146180',
+  count: 2,
+  item: {
+    id: '1319113781',
+    sku_id: '200000121972512662',
+    quantity: 2,
+    price: 15,
+    stock: 5,
+    original_price: null,
+    item_id: '200000110762782614',
+    name: '芋圆小丸子漩奶茶',
+    specs: [
+      { name: '规格', value: '热杯' },
+    ],
+    attrs: [
+      { name: '甜度', value: '标准糖' },
+      { name: '温度', value: '温热' },
+    ]
+  }
+}
+
+const cart = [{
+  button: '获取146180',
+  inline: true,
+  method() {
+    hybridAPI.cart.get('146180')
+    .then(response => {
+      console.log(response)
+      alert(JSON.stringify(response, null, 2))
+    })
+  },
+}, {
+  button: '清空146180',
+  inline: true,
+  method() {
+    hybridAPI.cart.clear('146180')
+    .then(response => {
+      console.log(response)
+      alert(JSON.stringify(response, null, 2))
+    })
+  },
+}, {
+  button: '+芋圆小丸子-热杯/标准糖/温热',
+  inline: true,
+  method() {
+    hybridAPI.cart.add(cartParam)
+    .then(response => {
+      console.log(response)
+      alert(JSON.stringify(response, null, 2))
+    })
+  },
+}, {
+  button: '-芋圆小丸子-热杯/标准糖/温热',
+  inline: true,
+  method() {
+    hybridAPI.cart.reduce(Object.assign(cartParam, { count: 1 }))
+    .then(response => {
+      console.log(response)
+      alert(JSON.stringify(response, null, 2))
+    })
+  },
+}, {
+  button: 'x芋圆小丸子-热杯/标准糖/温热',
+  inline: true,
+  method() {
+    hybridAPI.cart.remove(cartParam)
+    .then(response => {
+      console.log(response)
+      alert(JSON.stringify(response, null, 2))
+    })
+  },
+}]
+
 const apis = [
   [{
     button: '扫二维码返回结果',
@@ -171,6 +245,8 @@ const apis = [
     },
   }],
 ]
+
+apis.push(cart)
 
 apis.forEach(api => {
   let group = document.createElement('div')
