@@ -7,7 +7,7 @@ const scanCode = (needResult, type) => {
 
 let cartParam = {
   shop_id: '146180',
-  count: 2,
+  count: 2000,
   item: {
     id: '1319113781',
     sku_id: '200000121972512662',
@@ -61,7 +61,7 @@ const cart = [{
   button: '-芋圆小丸子-热杯/标准糖/温热',
   inline: true,
   method() {
-    hybridAPI.cart.reduce(Object.assign(cartParam, { count: 1 }))
+    hybridAPI.cart.reduce(Object.assign({}, cartParam, { count: 1 }))
     .then(response => {
       console.log(response)
       alert(JSON.stringify(response, null, 2))
@@ -198,10 +198,10 @@ const apis = [
     method() {
       hybridAPI.sharePanel({
         source: '',
-        targets: ['weixin', 'weixin_timeline', 'weibo', 'qq', 'qzone'],
+        targets: ['weixin', 'weixin_timeline', 'weibo', 'qq', 'qzone', 'clipboard'],
         title: '分享标题',
         text: '分享副标题',
-        url: '分享链接',
+        url: 'https://www.google.com',
         image_url: '分享图标'
       })
     },

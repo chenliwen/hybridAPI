@@ -17,9 +17,18 @@ export default options => {
     targets: Object.keys(SHARE_TYPES)
   }
   options = Object.assign(defaultConfig, options)
+
+  let param = {}
   let url = options.url + (/\?|#/.test(options.url) ? '&' : '?')
-  let param = options.targets.reduce((prev, item) => {
-    prev[SHARE_TYPES[item].key] = 'eleme://share?' + toQueryString({
+
+  let clipboardIndex = options.targets.indexOf('clipboard')
+  if (clipboardIndex !== -1) {
+    param.clipboard = `eleme://copy?text=${encodeURIComponent(options.url)}`
+    options.targets.splice(clipboardIndex, 1)
+  }
+
+  options.targets.forEach(item => {
+    param[SHARE_TYPES[item].key] = 'eleme://share?' + toQueryString({
       type: SHARE_TYPES[item].value,
       title: options.title,
       text: SHARE_TYPES[item].value === 2 ? `${options.title}, ${options.text}。分享链接：${url}type=${item}` : options.text,
@@ -28,12 +37,7 @@ export default options => {
       image_only: options.image_only ? 1 : 0,
       media: options.media,
     })
-    return prev
-  }, {})
-
-  if (options.targets.indexOf('clipboard') !== -1) {
-    param.clipboard = `eleme://copy?text=${option.url}`
-  }
+  })
 
   location.href = `eleme://sns_share?source=${options.source}&${toQueryString(param)}`
   return Promise.resolve()
